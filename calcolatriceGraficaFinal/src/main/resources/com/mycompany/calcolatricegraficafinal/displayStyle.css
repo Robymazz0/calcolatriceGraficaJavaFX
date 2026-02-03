@@ -1,0 +1,13 @@
+-root{
+    -fx-background-color:black;
+}
+#txtOperazioni {
+    -fx-background-color:yellowgreen;
+}
+#btnEquals{
+    -fx-background-color:blue;
+    -fx-text-fill:white;
+}
+#AnchorPane {
+    -fx-background-color:black;
+}

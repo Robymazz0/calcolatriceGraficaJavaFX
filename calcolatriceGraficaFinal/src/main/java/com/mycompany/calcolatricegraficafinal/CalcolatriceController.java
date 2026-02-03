@@ -69,20 +69,27 @@ public class CalcolatriceController {
     @FXML // fx:id="txtOperazioni"
     private TextField txtOperazioni; // Value injected by FXMLLoader
 
-    
+    private static final int lunghezzaMax=10;
     private double accumulatore=0;
     private String operatore="";
     private boolean nuovoNumero=true;
     
     private void appendNumber(String num){
-        if (nuovoNumero) {
-            txtOperazioni.setText(num);
-            nuovoNumero=false;
+        
+        String testo= txtOperazioni.getText();
+        
+        if(testo == null || testo.isEmpty() || nuovoNumero) {
+        txtOperazioni.setText(num);
+        nuovoNumero=false;
+        return;
         }
-        else{
-            txtOperazioni.setText(txtOperazioni.getText()+num);
-        }
+        
+        if(testo.length() >= lunghezzaMax) return;
+        
+        txtOperazioni.setText(testo+num);
     }
+   
+                
     @FXML
     void handle0(ActionEvent event) {
         appendNumber("0");
@@ -146,6 +153,7 @@ public class CalcolatriceController {
     @FXML
     void handleAddizione(ActionEvent event) {
         handleOperazioniActual("+");
+        txtOperazioni.setText("");
     }
 
     @FXML
@@ -159,6 +167,7 @@ public class CalcolatriceController {
     @FXML
     void handleDivisione(ActionEvent event) {
         handleOperazioniActual("/");
+        txtOperazioni.setText("");
     }
 
     @FXML
@@ -173,20 +182,21 @@ public class CalcolatriceController {
     @FXML
     void handleMoltiplicazione(ActionEvent event) {
         handleOperazioniActual("x");
+        txtOperazioni.setText("");
     }
 
-    @FXML
-    void handleOperazioni(ActionEvent event) {
-
-    }
+    
 
     @FXML
     void handleSottrazione(ActionEvent event) {
+        
         handleOperazioniActual("-");
+        txtOperazioni.setText("");
     }
 
     @FXML
     void handleVirgola(ActionEvent event) {
+        if (txtOperazioni.getText().length() >= lunghezzaMax) return;
         if (nuovoNumero){
            txtOperazioni.setText("0,");
            nuovoNumero= false;
