@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 /**
  * JavaFX App
@@ -22,6 +23,7 @@ public class App extends Application {
         stage.show();
         stage.setResizable(false);
         stage.setTitle("Calcolatrice");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("calcolatriceIcona.png")));
     }
 
     static void setRoot(String fxml) throws IOException {
